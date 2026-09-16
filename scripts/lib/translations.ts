@@ -6,7 +6,7 @@ import { transifexApi, type Collection } from '@transifex/api';
 import { dereferencedTranslatableContent } from './references.ts';
 import type { Options, References, ResourceInfo, SourceStrings, TStrings } from './types.def.ts';
 
-const COMMA_REGEX = /[,،]/
+const COMMA_REGEX = /[,،，]/
 
 export function expandTStrings(localeCode: string, tstrings: TStrings, sourceLanguageTranslations?: TStrings) {
   const isCommonwealthEnglish = localeCode.startsWith('en-') && localeCode !== 'en-US';
@@ -15,11 +15,11 @@ export function expandTStrings(localeCode: string, tstrings: TStrings, sourceLan
     let preset = presets[key];
 
     if (preset.name) {
-        let names = preset.name.split('\n').map(s => s.trim()).filter(Boolean);
-        preset.name = names[0];
-        if (names.length > 1) {
-            preset.aliases = names.slice(1);
-        }
+      let names = preset.name.split('\n').map(s => s.trim()).filter(Boolean);
+      preset.name = names[0];
+      if (names.length > 1) {
+        preset.aliases = names.slice(1);
+      }
     }
     if (typeof preset.aliases === 'string') {
       preset.aliases = preset.aliases.split('\n');
@@ -27,34 +27,34 @@ export function expandTStrings(localeCode: string, tstrings: TStrings, sourceLan
 
     // remove duplicates
     const rawTerms = typeof preset.terms === 'string'
-        // remove translation message if it was included somehow
-        ? preset.terms.replace(/<.*>/, '')
-          // convert to an array
-          .split(COMMA_REGEX)
-        : [];
+      // remove translation message if it was included somehow
+      ? preset.terms.replace(/<.*>/, '')
+        // convert to an array
+        .split(COMMA_REGEX)
+      : [];
 
     // for en-* translations, copy the american translations as alternative terms
     const americanPreset = sourceLanguageTranslations?.presets[key];
     if (isCommonwealthEnglish && americanPreset) {
-        const extaTerms = [
-            ...(Array.isArray(americanPreset.terms) ? americanPreset.terms : []),
-            ...(Array.isArray(americanPreset.aliases) ? americanPreset.aliases : []),
-            ...(americanPreset.name ? [americanPreset.name] : []),
-        ];
-        const existingName = (preset.name || americanPreset.name)?.toLowerCase();
-        rawTerms.push(...extaTerms.filter(value => value.toLowerCase() !== existingName));
+      const extaTerms = [
+        ...(Array.isArray(americanPreset.terms) ? americanPreset.terms : []),
+        ...(Array.isArray(americanPreset.aliases) ? americanPreset.aliases : []),
+        ...(americanPreset.name ? [americanPreset.name] : []),
+      ];
+      const existingName = (preset.name || americanPreset.name)?.toLowerCase();
+      rawTerms.push(...extaTerms.filter(value => value.toLowerCase() !== existingName));
     }
 
     if (!rawTerms.length) continue;
 
 
     preset.terms = Array.from(new Set(
-        rawTerms
-          // make everything lowercase and remove whitespace
-          .map(s => s.toLowerCase().trim())
-          // remove empty strings
-          .filter(Boolean)
-      ));
+      rawTerms
+        // make everything lowercase and remove whitespace
+        .map(s => s.toLowerCase().trim())
+        // remove empty strings
+        .filter(Boolean)
+    ));
 
     if (!preset.terms.length) {
       // no need to include empty terms
@@ -72,30 +72,30 @@ export function expandTStrings(localeCode: string, tstrings: TStrings, sourceLan
     const rawTerms = typeof field.terms === 'string'
       // remove translation message if it was included somehow
       ? field.terms.replace(/\[.*\]/, '')
-      // convert to an array
-      .split(COMMA_REGEX)
+        // convert to an array
+        .split(COMMA_REGEX)
       : [];
 
     // for en-* translations, copy the american translations as alternative terms
     const americanField = sourceLanguageTranslations?.fields[key];
     if (isCommonwealthEnglish && americanField) {
-        const extaTerms = [
-            ...(Array.isArray(americanField.terms) ? americanField.terms : []),
-            ...(Array.isArray(americanField.aliases) ? americanField.aliases : []),
-            ...(americanField.label ? [americanField.label] : []),
-        ]
-        const existingLabel = (field.label || americanField.label)?.toLowerCase();
-        rawTerms.push(...extaTerms.filter(value => value.toLowerCase() !== existingLabel));
+      const extaTerms = [
+        ...(Array.isArray(americanField.terms) ? americanField.terms : []),
+        ...(Array.isArray(americanField.aliases) ? americanField.aliases : []),
+        ...(americanField.label ? [americanField.label] : []),
+      ]
+      const existingLabel = (field.label || americanField.label)?.toLowerCase();
+      rawTerms.push(...extaTerms.filter(value => value.toLowerCase() !== existingLabel));
     }
 
     if (!rawTerms.length) continue;
 
     field.terms = Array.from(new Set(
       rawTerms
-      // make everything lowercase and remove whitespace
-      .map(s => s.toLowerCase().trim())
-      // remove empty strings
-      .filter(Boolean)
+        // make everything lowercase and remove whitespace
+        .map(s => s.toLowerCase().trim())
+        // remove empty strings
+        .filter(Boolean)
     ));
 
     if (!field.terms.length) {
@@ -177,7 +177,7 @@ async function fetchTranslations(_options: Partial<Options>, references: Referen
 
   function gotResourceInfo(results: ResourceInfo[][]) {
     let coverageByLocaleCode: { [localeCode: string]: number } = {};
-    results.forEach(function(info) {
+    results.forEach(function (info) {
       info.forEach(stat => {
         let code = stat.relationships.language.data.id.substring(2).replace(/_/g, '-');
         let type = 'translated_strings';
@@ -186,7 +186,7 @@ async function fetchTranslations(_options: Partial<Options>, references: Referen
           || options.translReviewedOnly.indexOf(code) !== -1)) {
           type = 'reviewed_strings';
         }
-        let coveragePart = (stat.attributes[type] /  stat.attributes.total_strings) / results.length;
+        let coveragePart = (stat.attributes[type] / stat.attributes.total_strings) / results.length;
 
         if (coverageByLocaleCode[code] === undefined) coverageByLocaleCode[code] = 0;
         coverageByLocaleCode[code] += coveragePart;
@@ -210,26 +210,26 @@ async function fetchTranslations(_options: Partial<Options>, references: Referen
     fs.writeFileSync(`${outDir}/index.min.json`, JSON.stringify(sortedLocales, null, 4));
   }
 
-    async function getResource(resourceId: string): Promise<SourceStrings> {
-        const codes = await getLanguages();
+  async function getResource(resourceId: string): Promise<SourceStrings> {
+    const codes = await getLanguages();
 
-        const promises = [];
-        for (const code of codes) {
-            // wait 50ms between each request to avoid sending 100s
-            // of requests at once to transifex.
-            await setTimeout(50);
-            promises.push(getLanguage(resourceId)(code));
-        }
-        const results = await Promise.all(promises);
-
-        let locale: SourceStrings = {};
-        results.forEach((result, i) => {
-          expandTStrings(codes[i], result.presets || {}, sourceLanguageTranslations);
-          locale[codes[i]] = result;
-        });
-
-        return locale;
+    const promises = [];
+    for (const code of codes) {
+      // wait 50ms between each request to avoid sending 100s
+      // of requests at once to transifex.
+      await setTimeout(50);
+      promises.push(getLanguage(resourceId)(code));
     }
+    const results = await Promise.all(promises);
+
+    let locale: SourceStrings = {};
+    results.forEach((result, i) => {
+      expandTStrings(codes[i], result.presets || {}, sourceLanguageTranslations);
+      locale[codes[i]] = result;
+    });
+
+    return locale;
+  }
 
 
   function gotResource(results: SourceStrings[]) {
@@ -263,8 +263,8 @@ async function fetchTranslations(_options: Partial<Options>, references: Referen
           !Array.isArray(options.translReviewedOnly)
           || options.translReviewedOnly.indexOf(code) !== -1);
         const url = await transifexApi.ResourceTranslationsAsyncDownload.download({
-          resource: {data:{type:'resources', id:`o:${options.translOrgId}:p:${options.translProjectId}:r:${resourceId}`}},
-          language: {data:{type:'languages', id:`l:${code}`}},
+          resource: { data: { type: 'resources', id: `o:${options.translOrgId}:p:${options.translProjectId}:r:${resourceId}` } },
+          language: { data: { type: 'languages', id: `l:${code}` } },
           // fetch only reviewed strings for some languages
           mode: reviewedOnly ? 'reviewed' : 'default'
         });

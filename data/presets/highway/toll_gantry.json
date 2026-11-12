@@ -1,7 +1,7 @@
 {
     "locationSet": {
         "exclude": [
-            "de"
+            "DE"
         ]
     },
     "icon": "temaki-toll_gantry",

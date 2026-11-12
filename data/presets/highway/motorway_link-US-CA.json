@@ -40,8 +40,8 @@
     },
     "locationSet": {
         "include": [
-            "ca",
-            "us"
+            "CA",
+            "US"
         ]
     }
 }

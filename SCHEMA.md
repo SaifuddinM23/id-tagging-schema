@@ -212,6 +212,8 @@ An object with the identifiers of regions where this preset should or shouldn't 
 
 See the [location-conflation](https://github.com/ideditor/location-conflation) package for details. Note that `"include": ["Planet"]` should be omitted.
 
+When a location identifier is a two-letter country or region code, use uppercase format (for example, `US`, not `us`).
+
 ```js
 "locationSet": {
     "include": ["US"],
@@ -721,6 +723,8 @@ Example: This is how we show the Internet Access Fee field only if the feature h
 An object with the identifiers of regions where this field should or shouldn't be shown. By default, fields are available everywhere.
 
 See the [location-conflation](https://github.com/ideditor/location-conflation) package for details.
+
+When a location identifier is a two-letter country or region code, use uppercase format (for example, `US`, not `us`).
 
 ```js
 "locationSet": {

@@ -19,10 +19,10 @@
     ],
     "locationSet": {
         "include": [
-            "be",
-            "de",
-            "lu",
-            "nl"
+            "BE",
+            "DE",
+            "LU",
+            "NL"
         ]
     },
     "matchScore": 0.2,

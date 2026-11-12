@@ -4,10 +4,10 @@
     "label": "Firewood Provided",
     "locationSet": {
         "include": [
-            "ch",
-            "dk",
-            "fi",
-            "se"
+            "CH",
+            "DK",
+            "FI",
+            "SE"
         ]
     }
 }

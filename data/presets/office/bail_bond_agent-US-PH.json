@@ -1,8 +1,8 @@
 {
     "locationSet": {
         "include": [
-            "us",
-            "ph"
+            "US",
+            "PH"
         ]
     },
     "icon": "maki-bank",

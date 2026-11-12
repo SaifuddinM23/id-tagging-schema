@@ -17,14 +17,14 @@
     ],
     "locationSet": {
         "include": [
-            "at",
-            "ch",
-            "de",
-            "dk",
-            "fx",
-            "it",
-            "li",
-            "nl"
+            "AT",
+            "CH",
+            "DE",
+            "DK",
+            "FX",
+            "IT",
+            "LI",
+            "NL"
         ]
     },
     "name": "Signed Hitchhiking Place",

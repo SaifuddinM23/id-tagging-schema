@@ -2,7 +2,7 @@
     "icon": "fas-building-flag",
     "locationSet": {
         "include": [
-            "ph"
+            "PH"
         ]
     },
     "geometry": [

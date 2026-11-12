@@ -6,7 +6,7 @@
     "pattern": "^MONACO[A-Z\\d]{5}001|\\d{9}([1-7]\\d{3}|0[1-9]\\d{2}|00[1-9]\\d|000[1-9])\\d$",
     "locationSet": {
         "include": [
-            "fr"
+            "FR"
         ]
     },
     "terms": [

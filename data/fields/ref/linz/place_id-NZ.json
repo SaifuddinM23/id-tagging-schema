@@ -7,8 +7,8 @@
     "universal": true,
     "locationSet": {
         "include": [
-            "nz",
-            "aq"
+            "NZ",
+            "AQ"
         ]
     },
     "terms": [

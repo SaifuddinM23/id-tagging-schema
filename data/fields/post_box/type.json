@@ -2,7 +2,7 @@
     "key": "post_box:type",
     "locationSet": {
         "exclude": [
-            "gb"
+            "GB"
         ]
     },
     "type": "combo",

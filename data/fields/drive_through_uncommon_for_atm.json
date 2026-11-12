@@ -4,21 +4,21 @@
     "label": "{drive_through}",
     "locationSet": {
         "exclude": [
-            "ca",
-            "us",
-            "mx",
-            "cr",
-            "ec",
-            "gt",
-            "hn",
-            "ni",
-            "pr",
-            "do",
-            "ve",
-            "au",
-            "nz",
-            "id",
-            "my"
+            "CA",
+            "US",
+            "MX",
+            "CR",
+            "EC",
+            "GT",
+            "HN",
+            "NI",
+            "PR",
+            "DO",
+            "VE",
+            "AU",
+            "NZ",
+            "ID",
+            "MY"
         ]
     }
 }

@@ -392,7 +392,10 @@
                     "uniqueItems": true,
                     "items": {
                         "type": "string",
-                        "minLength": 1
+                        "minLength": 1,
+                        "not": {
+                            "pattern": "^[a-z]{2}$"
+                        }
                     }
                 },
                 "exclude": {
@@ -401,7 +404,10 @@
                     "uniqueItems": true,
                     "items": {
                         "type": "string",
-                        "minLength": 1
+                        "minLength": 1,
+                        "not": {
+                            "pattern": "^[a-z]{2}$"
+                        }
                     }
                 }
             },

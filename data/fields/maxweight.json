@@ -5,7 +5,7 @@
     "snake_case": false,
     "locationSet": {
         "exclude": [
-            "fr"
+            "FR"
         ]
     }
 }

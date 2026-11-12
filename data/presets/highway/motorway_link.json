@@ -51,8 +51,8 @@
     ],
     "locationSet": {
         "exclude": [
-            "ca",
-            "us"
+            "CA",
+            "US"
         ]
     }
 }

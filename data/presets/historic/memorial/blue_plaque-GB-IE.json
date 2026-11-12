@@ -24,8 +24,8 @@
     "name": "Blue Plaque",
     "locationSet": {
         "include": [
-            "gb",
-            "ie"
+            "GB",
+            "IE"
         ]
     }
 }

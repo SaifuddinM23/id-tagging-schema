@@ -1,8 +1,8 @@
 {
     "locationSet": {
         "include": [
-            "gb",
-            "ie"
+            "GB",
+            "IE"
         ]
     },
     "key": "real_fire",
